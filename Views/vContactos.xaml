@@ -2,76 +2,87 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="dgAguirreTallerS3.Views.vContactos"
-             Title="vContactos">
-    <VerticalStackLayout
-        Padding="20"
-        Spacing="10">
-        <Label 
-            Text="Ingreso de Contactos"  
-            FontSize="Title"
-            TextColor="BlueViolet"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Grid ColumnSpacing="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+             Title="vContactos"
+             BackgroundColor="FloralWhite">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Label Text="Ingreso de Datos"
+                   FontSize="Title"
+                   TextColor="BlueViolet"
+                   HorizontalOptions="Center" />
+
+            <Image Source="logo_ingreso_datos.png"
+                   Aspect="AspectFit"
+                   HeightRequest="200"
+                   WidthRequest="200"
+                   HorizontalOptions="Center" />
+
+            <Grid ColumnSpacing="10" RowSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-                <Picker 
-            x:Name="pickerTipoIdentificacion" 
-            Title="Seleccione el tipo de identificación">
-            <Picker.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Cédula</x:String>
-                    <x:String>Pasaporte</x:String>
-                    <x:String>RUC</x:String>
-                </x:Array>
-            </Picker.ItemsSource>
-        </Picker>
-            <Entry 
-                x:Name="txtIdentificacion" 
-                Placeholder="Ingrese la identificación" 
-                Grid.Column="1" />
-        </Grid>
+                <!-- Fila 0: Identificación (Picker + número en la misma celda) -->
+                <Label Text="Identificación:" Grid.Row="0" Grid.Column="0" VerticalOptions="Center" />
+                <Grid Grid.Row="0" Grid.Column="1" ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-        <Label 
-            Text="Nombres:" 
-            FontSize="Body"
-            TextColor="Black" />
-        <Entry 
-            x:Name="txtNombres" 
-            Placeholder="Ingrese los nombres" />
-        <Label 
-            Text="Apellidos:" 
-            FontSize="Body"
-            TextColor="Black" />
-        <Entry 
-            x:Name="txtApellidos" 
-            Placeholder="Ingrese los apellidos" />
-        
-        <Label
-     Text="Fecha de Nacimiento:"
-     FontSize="Body"
-     TextColor="Black" />
-        <DatePicker
-            x:Name="datePickerFechaNacimiento"
-            Format="dd/MM/yyyy"  />
-            
-        <Label
-            Text="Correo Electrónico:"
-            FontSize="Body"
-            TextColor="Black" />
-        <Entry
-            x:Name="txtCorreo"
-            Placeholder="Ingrese el correo electrónico" />
-        <Label
-            Text="Salario:"
-            FontSize="Body"
-            TextColor="Black" />
-        <Entry
-            x:Name="txtSalario"
-            Placeholder="Ingrese el salario" />
+                    <Picker x:Name="pickerTipoIdentificacion"
+                            Title="Tipo"
+                            Grid.Column="0">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Cédula</x:String>
+                                <x:String>Pasaporte</x:String>
+                                <x:String>RUC</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
 
-    </VerticalStackLayout>
+                    <Entry x:Name="txtIdentificacion"
+                           Placeholder="Ingrese la identificación"
+                           Keyboard="Numeric"
+                           Grid.Column="1" />
+                </Grid>
+
+                <!-- Fila 1: Nombres -->
+                <Label Text="Nombres:" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" />
+                <Entry x:Name="txtNombres" Placeholder="Ingrese los nombres" Grid.Row="1" Grid.Column="1" />
+
+                <!-- Fila 2: Apellidos -->
+                <Label Text="Apellidos:" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" />
+                <Entry x:Name="txtApellidos" Placeholder="Ingrese los apellidos" Grid.Row="2" Grid.Column="1" />
+
+                <!-- Fila 3: Fecha -->
+                <Label Text="Fecha de Nacimiento:" Grid.Row="3" Grid.Column="0" VerticalOptions="Center" />
+                <DatePicker x:Name="datePickerFechaNacimiento" Format="dd/MM/yyyy" Grid.Row="3" Grid.Column="1" />
+
+                <!-- Fila 4: Correo -->
+                <Label Text="Correo Electrónico:" Grid.Row="4" Grid.Column="0" VerticalOptions="Center" />
+                <Entry x:Name="txtCorreo" Placeholder="Ingrese el correo electrónico" Keyboard="Email" Grid.Row="4" Grid.Column="1" />
+
+                <!-- Fila 5: Salario -->
+                <Label Text="Salario:" Grid.Row="5" Grid.Column="0" VerticalOptions="Center" />
+                <Entry x:Name="txtSalario" Placeholder="Ingrese el salario" Keyboard="Numeric" Grid.Row="5" Grid.Column="1" />
+            </Grid>
+
+            <Button x:Name="btnGuardar"
+                    Text="Guardar contacto"
+                    Clicked="btnGuardar_Clicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
